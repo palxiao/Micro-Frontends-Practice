@@ -5,11 +5,13 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div> -->
   <div id="layout-wrapper">
-    <div @click="jumpTo('/micro_vue2')" class="btn">点击进入Vue2应用</div>
-    <div @click="jumpTo('/micro_vue3')" class="btn">点击进入Vue3 + Ts应用</div>
+    <div @click="jumpTo('/micro_vue2')" class="btn">点击进入 Vue2 应用</div>
+    <div @click="jumpTo('/micro_vue3')" class="btn">点击进入 Vue3 + Ts 应用</div>
     <div @click="jumpTo('/micro_vue3_vite2')" class="btn">
-      点击进入Vue3 + Ts + Vite2应用
+      点击进入 Vue3 + Ts + Vite2 应用
     </div>
+    <div @click="jumpTo('/micro_react')" class="btn">点击进入 React 应用</div>
+    
     <div id="subapp-viewport"></div>
   </div>
 </template>

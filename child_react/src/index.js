@@ -5,8 +5,12 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-function render(params) {
-  const root = ReactDOM.createRoot(document.getElementById('root'))
+let root = null
+
+function render(props = {}) {
+  const { container } = props
+  const el = container ? container.querySelector('#root') : document.querySelector('#root')
+  root = ReactDOM.createRoot(el)
   root.render(
     <Router basename={window.__POWERED_BY_QIANKUN__ ? '/micro_react' : '/'}>
       <App />
@@ -14,7 +18,9 @@ function render(params) {
   )
 }
 
-render()
+if (!window.__POWERED_BY_QIANKUN__) {
+  render({})
+}
 
 // 然后加入生命周期即可
 export async function bootstrap() {
@@ -32,9 +38,8 @@ export async function mount(props) {
 /**
  * 应用每次 切出/卸载 会调用的方法，通常在这里我们会卸载微应用的应用实例
  */
-export async function unmount() {
-  console.log('ReactMicroApp unmount')
-  ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+export async function unmount(props) {
+  root.unmount()
 }
 
 // If you want to start measuring performance in your app, pass a function
